@@ -13,7 +13,7 @@ export default function Home() {
     const fetchPosts = async()=>{
         try {
             console.log(search)
-            const res = await axios.get("http://localhost:5000/api/posts/title/"+search,{
+            const res = await axios.get("http://ec2-13-233-158-86.ap-south-1.compute.amazonaws.com:5000/api/posts/title/"+search,{
               headers: {
                 Authorization: `Bearer ${token}`,
               },

@@ -40,7 +40,7 @@ export default function Login() {
     try {
       dispatch(LOGIN_START());
 
-      const res = await axios.post("http://localhost:5000/api/auth/login", {
+      const res = await axios.post("http://ec2-13-233-158-86.ap-south-1.compute.amazonaws.com:5000/api/auth/login", {
         email,
         password,
       });
