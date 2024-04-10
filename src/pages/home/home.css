@@ -1,0 +1,16 @@
+.home{
+    display: flex;    
+    flex-direction: column;
+    margin-bottom: 50px;
+    align-items: center;
+}
+
+.scroll{
+  overflow-y: auto;
+  height: calc(100vh - 80px) !important;
+}
+
+
+
+
+  

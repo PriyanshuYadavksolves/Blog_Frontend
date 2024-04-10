@@ -1,0 +1,103 @@
+
+.commentList {
+
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
+  }
+  
+  .commentItem {
+    padding: 10px;
+      display: flex;
+      border-bottom: 1px solid #ccc;
+      gap: 20px;
+    }
+    
+    .commentimg{
+    padding: 5px;
+    display: grid;
+    place-items: center;
+  }
+  .commentimg > img{
+    transform: scale(1.2);
+  }
+
+  .commentcenter{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .com{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .commentusername{
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  .commentdate{
+    font-size: 14px;
+    color: rgb(101, 101, 101);
+  }
+
+  
+  .newComment {
+    box-sizing: border-box;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+   .commentTextarea
+   {
+    border-radius: 10px;
+    padding: 10px;
+    color:#666;
+    font-size: 18px;
+  }
+  
+  .newComment button, .updateCommentButton{
+    height: 40px;
+    width: 150px;
+    font-weight: 600;
+    padding: 8px 16px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    border:3px solid #007bff;
+    transition: 0.2s all ease;
+    align-self: flex-end;
+  }
+  .updateCommentButton{
+    background-color: rgb(40, 142, 142);
+    border:3px solid rgb(40, 142, 142);
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+  .updateCommentButton:hover{
+    background-color: white;
+    color: rgb(40, 142, 142);
+  }
+  
+  .newComment button:hover {
+    background-color: white;
+    color: #007bff;
+  }
+
+  .editcommentform{
+    display: flex;
+    gap: 20px;
+  }
+  
+
+  

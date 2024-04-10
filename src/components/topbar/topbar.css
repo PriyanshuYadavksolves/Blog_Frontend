@@ -1,0 +1,133 @@
+
+
+.top {
+    height: 50px;
+    background-color: #ffffff;
+    position: sticky;
+    top: 0;
+    display: flex;
+    padding: 0px 20px;
+    align-items: center;
+    font-family: 'Josefin Sans', sans-serif;
+    justify-content: space-between;
+    z-index: 999;
+  }
+  
+  .topLeft{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .topRight {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .topCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .topSearchInput {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+  }
+  
+  .topSearchIcon {
+    color: #666;
+    cursor: pointer;
+  }
+  
+  
+  .topImg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+  }
+  
+  .topList {
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .topListItem {
+    margin-right: 20px;
+    color: #696868;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .topListItem:hover {
+    color: #212121;
+  }
+  
+  .topSearchIcon {
+    font-size: 18px;
+    margin: 0px 15px;
+    color: #666;
+    cursor: pointer;
+
+  }
+  
+  .logout {
+    color: #ff006a;
+    cursor: pointer;
+    list-style: none;
+    transition: color 0.3s ease;
+  }
+  
+  .logout:hover {
+    color: #b247e4;
+  }
+  
+  .right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .topList a.active {
+    color: red;
+  }
+  
+  @media (max-width: 890px) {
+    .link{
+      font-size: 13px;
+    }
+
+    .topSearchInput{
+      width: 150px;
+      padding: 4px 6px;
+    }
+    .logout{
+      font-size: 13px;
+    }
+    .topListItem{
+      margin-right: 13px;
+    }
+    .right{
+      gap: 13px;
+    }
+    .topImg{
+      height: 30px;
+      width: 30px;
+    }
+    .topSearchIcon{
+      font-size: 16px;
+      margin: 0px 10px;
+    }
+    .topCenter{
+      display: flex;
+    }
+
+  }

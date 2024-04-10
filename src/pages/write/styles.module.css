@@ -1,0 +1,29 @@
+.wrapper {
+  padding: 2rem 3rem;
+}
+
+.label {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.editor {
+  height: 380px;
+  margin-top: 1rem;
+  margin-bottom: 4rem;
+}
+
+.btn {
+  border: none;
+  color: #fff;
+  border-radius: 20px;
+  font-weight: bold;
+  padding: 0.6rem 2rem;
+  background-color: royalblue;
+}
+
+.wid{
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+}
