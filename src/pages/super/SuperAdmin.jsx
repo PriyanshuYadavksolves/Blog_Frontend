@@ -20,7 +20,7 @@ const SuperAdmin = () => {
 
   const handleCheckboxChange = async (id, isAdmin) => {
     try {
-      await axios.put("http://localhost:5000/api/super/" + id, {
+      await axios.put(process.env.REACT_APP_BACKEND_URL+"api/super/" + id, {
         isAdmin,
       },{
         headers: {
@@ -44,7 +44,7 @@ const SuperAdmin = () => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete("http://localhost:5000/api/super/" + id,{
+      const res = await axios.delete(process.env.REACT_APP_BACKEND_URL+"api/super/" + id,{
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -60,8 +60,8 @@ const SuperAdmin = () => {
 
   const fetchUsers = async () => {
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/super/getUsers?pageNumber=" + pageNumber,
+      const res = await axios.post(process.env.REACT_APP_BACKEND_URL+
+        "api/super/getUsers?pageNumber=" + pageNumber,
         {
           id,
         },{

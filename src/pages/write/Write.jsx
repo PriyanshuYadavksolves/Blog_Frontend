@@ -62,8 +62,8 @@ const Write = () => {
 
     console.log(formData)
     try {
-      const res = await axios.post(
-        "http://localhost:5000/api/blogs/upload-images",
+      const res = await axios.post(process.env.REACT_APP_BACKEND_URL+
+        "api/blogs/upload-images",
         formData,
         {
           headers: {

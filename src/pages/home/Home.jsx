@@ -22,7 +22,7 @@ export default function Home() {
   const fetchPosts = async () => {
     try {
       const res = await axios.get(
-        `http://ec2-13-233-158-86.ap-south-1.compute.amazonaws.com:5000/api/posts/getAllPosts?pageNumber=${pageNumber}`,
+        `http://localhost:5000/api/posts/getAllPosts?pageNumber=${pageNumber}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -46,7 +46,7 @@ export default function Home() {
 
   const fetchBlog = async() =>{
     try {
-      const res = await axios.get('http://ec2-13-233-158-86.ap-south-1.compute.amazonaws.com:5000/api/blogs/allBlog',{
+      const res = await axios.get(process.env.REACT_APP_BACKEND_URL+'api/blogs/allBlog',{
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -15,8 +15,7 @@ import { toast } from "react-toastify";
 import Cookies from "js-cookie";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+
   const { isFetching } = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -35,12 +34,12 @@ export default function Login() {
 
   const onSubmit = async(data) => {
 
-    const {username,email,password} = data
+    const {email,password} = data
 
     try {
       dispatch(LOGIN_START());
 
-      const res = await axios.post("http://ec2-13-233-158-86.ap-south-1.compute.amazonaws.com:5000/api/auth/login", {
+      const res = await axios.post(process.env.REACT_APP_BACKEND_URL+"api/auth/login", {
         email,
         password,
       });

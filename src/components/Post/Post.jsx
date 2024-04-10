@@ -1,6 +1,5 @@
 import "./post.css";
 import { NavLink } from "react-router-dom";
-import parse from "html-react-parser";
 import { useEffect, useState } from "react";
 
 

@@ -87,8 +87,8 @@ const SingleBlog = () => {
       id: comment._id,
     };
     try {
-      const res = await axios.delete(
-        "http://localhost:5000/api/blogs/delete-images",
+      const res = await axios.delete(process.env.REACT_APP_BACKEND_URL+
+        "api/blogs/delete-images",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -118,8 +118,8 @@ const SingleBlog = () => {
       id: comment._id,
     };
     try {
-      const res = await axios.patch(
-        "http://localhost:5000/api/blogs/update-images",
+      const res = await axios.patch(process.env.REACT_APP_BACKEND_URL+
+        "api/blogs/update-images",
         newPost,
         {
           headers: {
@@ -149,8 +149,8 @@ const SingleBlog = () => {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const res = await axios.get(
-          "http://localhost:5000/api/blogs/blog/" + blogId,
+        const res = await axios.get(process.env.REACT_APP_BACKEND_URL+
+          "api/blogs/blog/" + blogId,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -180,8 +180,8 @@ const SingleBlog = () => {
   const handleLike = async () => {
     try {
       const userId = userData._id;
-      const response = await axios.put(
-        `http://localhost:5000/api/blogs/like/${blogId}`,
+      const response = await axios.put(process.env.REACT_APP_BACKEND_URL+
+        `api/blogs/like/${blogId}`,
         { userId },
         {
           headers: {
@@ -210,8 +210,8 @@ const SingleBlog = () => {
     dispatch(UPDATE_START());
     try {
       const followindId = comment.userId;
-      const res = await axios.put(
-        "http://localhost:5000/api/users/follow/" + followindId,
+      const res = await axios.put(process.env.REACT_APP_BACKEND_URL+
+        "api/users/follow/" + followindId,
         {},
         {
           headers: {
@@ -237,8 +237,8 @@ const SingleBlog = () => {
     dispatch(UPDATE_START());
     try {
       const followindId = comment.userId;
-      const res = await axios.put(
-        "http://localhost:5000/api/users/unfollow/" + followindId,
+      const res = await axios.put(process.env.REACT_APP_BACKEND_URL+
+        "api/users/unfollow/" + followindId,
         {},
         {
           headers: {

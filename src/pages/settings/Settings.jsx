@@ -43,8 +43,8 @@ export default function Settings() {
     }
   
     try {
-      const res = await axios.patch(
-        "http://localhost:5000/api/users/" + userData._id,
+      const res = await axios.patch(process.env.REACT_APP_BACKEND_URL+
+        "api/users/" + userData._id,
         formData,
         {
           headers: {

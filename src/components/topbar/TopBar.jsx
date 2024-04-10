@@ -31,7 +31,7 @@ export default function Topbar() {
     }else{
       try {
         dispatch(UPDATE_START())
-        const res = await axios.put("http://localhost:5000/api/users/request/"+userData._id,{},
+        const res = await axios.put(process.env.REACT_APP_BACKEND_URL+"api/users/request/"+userData._id,{},
         {
           headers: {
             Authorization: `Bearer ${token}`,

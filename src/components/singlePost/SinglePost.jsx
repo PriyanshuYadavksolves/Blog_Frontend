@@ -31,7 +31,7 @@ export default function SinglePost() {
     try {
       const userId = userData._id;
       const response = await axios.put(
-        `http://localhost:5000/api/posts/like/${Id}`,
+        `${process.env.REACT_APP_BACKEND_URL}api/posts/like/${Id}`,
         { userId },{
           headers: {
             Authorization: `Bearer ${token}`,
@@ -56,7 +56,7 @@ export default function SinglePost() {
 
   useEffect(() => {
     const getPost = async () => {
-      const res = await axios.get("http://localhost:5000/api/posts/" + Id,{
+      const res = await axios.get(process.env.REACT_APP_BACKEND_URL+"api/posts/" + Id,{
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -75,7 +75,7 @@ export default function SinglePost() {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:5000/api/posts/${post._id}`, {
+      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}api/posts/${post._id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -95,7 +95,7 @@ export default function SinglePost() {
 
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:5000/api/posts/${post._id}`, {
+      await axios.put(`${process.env.REACT_APP_BACKEND_URL}api/posts/${post._id}`, {
         username: userData.isSuperAdmin ? name : userData.username,
         title,
         desc,
