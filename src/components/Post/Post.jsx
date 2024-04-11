@@ -36,7 +36,6 @@ export default function Post({ post }) {
       <div className="mt-6 flex items-center">
         <div className="flex-shrink-0">
           <NavLink>
-            <span className="sr-only">Roel Aufderehar</span>
             <img
               className="h-10 w-10 rounded-full"
               src={post.userPic}

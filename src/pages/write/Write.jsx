@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Oval } from "react-loader-spinner";
 
-
 import Cookies from "js-cookie";
 import "./write.css";
 
@@ -29,18 +28,17 @@ const Write = () => {
   const quill = useRef();
 
   // Handler to handle button clicked
-  const handler = async(e) => {
+  const handler = async (e) => {
     e.preventDefault(); // Prevent default form submission
 
-    if(title == ""){
-      toast.warning("Please give Title")
-      return 
+    if (title == "") {
+      toast.warning("Please give Title");
+      return;
+    } else if (value == "") {
+      toast.warning("Please Write Something About Blog");
+      return;
     }
-    else if(value== ""){
-      toast.warning('Please Write Something About Blog')
-      return
-    }
-  
+
     if (!userData.isAdmin && !userData.isSuperAdmin) {
       toast.error("Sorry! You Are Not Admin");
       return;
@@ -51,19 +49,25 @@ const Write = () => {
       title: title,
       content: value,
       userPic: userData.profilePic,
-      coverPic : file || "https://img.freepik.com/free-vector/blogging-fun-content-creation-online-streaming-video-blog-young-girl-making-selfie-social-network-sharing-feedback-self-promotion-strategy-vector-isolated-concept-metaphor-illustration_335657-855.jpg"
+      coverPic:
+        file ||
+        "https://img.freepik.com/free-vector/blogging-fun-content-creation-online-streaming-video-blog-young-girl-making-selfie-social-network-sharing-feedback-self-promotion-strategy-vector-isolated-concept-metaphor-illustration_335657-855.jpg",
     };
     const formData = new FormData();
-    formData.append("username",userData.username)
-    formData.append("title",title)
-    formData.append("content",value)
-    formData.append("userPic",userData.profilePic)
-    formData.append("coverPic",file || "https://img.freepik.com/free-vector/blogging-fun-content-creation-online-streaming-video-blog-young-girl-making-selfie-social-network-sharing-feedback-self-promotion-strategy-vector-isolated-concept-metaphor-illustration_335657-855.jpg")
+    formData.append("username", userData.username);
+    formData.append("title", title);
+    formData.append("content", value);
+    formData.append("userPic", userData.profilePic);
+    formData.append(
+      "coverPic",
+      file ||
+        "https://img.freepik.com/free-vector/blogging-fun-content-creation-online-streaming-video-blog-young-girl-making-selfie-social-network-sharing-feedback-self-promotion-strategy-vector-isolated-concept-metaphor-illustration_335657-855.jpg"
+    );
 
-    console.log(formData)
+    console.log(formData);
     try {
-      const res = await axios.post(process.env.REACT_APP_BACKEND_URL+
-        "api/blogs/upload-images",
+      const res = await axios.post(
+        process.env.REACT_APP_BACKEND_URL + "api/blogs/upload-images",
         formData,
         {
           headers: {
@@ -72,7 +76,7 @@ const Write = () => {
           },
         }
       );
-      console.log(res.data)
+      console.log(res.data);
       toast.success("Blog Created");
 
       // setValue(res.data.htmlContent); // Update the editor with the modified content
@@ -83,7 +87,7 @@ const Write = () => {
       console.error("Error uploading images:", error);
       // Handle errors appropriately
     }
-  }
+  };
 
   const modules = useMemo(
     () => ({
@@ -98,9 +102,8 @@ const Write = () => {
             { indent: "-1" },
             { indent: "+1" },
           ],
-          ["link", "image","code-block"],
+          ["link", "image", "code-block"],
           ["clean"],
-
         ],
         handlers: {
           // image: imageHandler,
@@ -126,7 +129,7 @@ const Write = () => {
     "image",
     "color",
     "clean",
-    "code-block"
+    "code-block",
   ];
 
   return (
@@ -153,33 +156,38 @@ const Write = () => {
             </div>
           )}
 
-            <div className="flex gap-2.5 items-center">
+          <div className="flex gap-2.5 items-center justify-between">
+            <div className="flex gap-2">
 
-          <label htmlFor="fileInput">
-            <span> Cover Photo :</span>
-          </label>
-          <input
-            type="file"
-            id="fileInput"
-            name="file"
-            required
-            placeholder="asdfs"
-            onChange={(e) => setFile(e.target.files[0])}
-            />
-            </div>
+            <label htmlFor="fileInput">
+              <span> Cover Photo :</span>
+            </label>
+            <input
+              type="file"
+              id="fileInput"
+              name="file"
+              required
+              placeholder="asdfs"
+              onChange={(e) => setFile(e.target.files[0])}
+              />
+              </div>
+            <button
+              type="submit"
+              className=" self-start bg-blue-700 text-white py-2 px-8 rounded-md"
+            >
+              Publish
+            </button>
+          </div>
 
-        <QuillEditor
-          ref={(el) => (quill.current = el)}
-          theme="snow"
-          value={value}
-          formats={formats}
-          modules={modules}
-          onChange={(value) => setValue(value)}
+          <QuillEditor
+            ref={(el) => (quill.current = el)}
+            theme="snow"
+            value={value}
+            formats={formats}
+            modules={modules}
+            onChange={(value) => setValue(value)}
           />
-        <button type="submit" className=" self-start bg-blue-700 text-white py-2 px-8 rounded-md">
-          Submit
-        </button>
-         </form>
+        </form>
 
         {loading && (
           <>

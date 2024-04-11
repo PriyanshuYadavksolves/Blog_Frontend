@@ -13,6 +13,9 @@ import SuperAdmin from './pages/super/SuperAdmin';
 import SingleUser from './pages/singleUser/SingleUser'
 import AllPoss from './pages/allPost/AllPoss'
 import SingleBlog from './components/singleBlog/SingleBlog';
+import ProfileModal from './components/profileCard/ProfileModal';
+import Test from './components/profileCard/Test';
+import Followers from './components/followers/Followers.jsx';
 
 
 function App() {
@@ -32,6 +35,8 @@ function App() {
         <Route path="/post/title/" element={ userData ? <AllPoss /> : <Login/>} /> 
         <Route path="/super/user/" element={userData ? <SingleUser /> : <Login/>} />
         <Route path="/super/:id" element={userData ? <SuperAdmin /> : <Login/>} />
+        <Route path="/modal" element={userData ? <ProfileModal /> : <Login/>} />
+        <Route path="/followers/:id" element={userData ? <Followers /> : <Login/>} />
       </Routes>
     </Router>
   );

@@ -116,11 +116,11 @@ export default function Settings() {
             <div className="flex ml-10 gap-10">
               <div className="flex flex-col items-center">
                 <span>{userData.followers.length}</span>
-                <button className="hover:text-slate-700">Followers</button>
+                <span className="hover:text-slate-700 cursor-pointer">Followers</span>
               </div>
               <div className="flex flex-col items-center">
                 <span>{userData.following.length}</span>
-                <button className="hover:text-slate-700">Followings</button>
+                <span className="hover:text-slate-700 cursor-pointer">Followings</span>
               </div>
             </div>
           </div>

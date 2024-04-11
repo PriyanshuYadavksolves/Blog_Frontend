@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import Cookies from "js-cookie";
 
 const initialState = {
     userData: JSON.parse(localStorage.getItem("user")) || null,
@@ -44,6 +45,8 @@ const userSlice = createSlice({
             localStorage.setItem("user", JSON.stringify(state.userData));
             state.isFetching = false;
             state.error = false;
+            Cookies.remove('token')
+            Cookies.remove('id')
         }
 
     },

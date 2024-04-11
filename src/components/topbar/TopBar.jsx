@@ -1,58 +1,72 @@
 import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { LOGOUT,loadUserData,UPDATE_START,UPDATE_SUCCESS,UPDATE_FAILURE } from "../../features/user/userSlice";
+import {
+  loadUserData,
+  UPDATE_START,
+  UPDATE_SUCCESS,
+  UPDATE_FAILURE,
+} from "../../features/user/userSlice";
 import { toast } from "react-toastify";
 import "./topbar.css";
 import axios from "axios";
 import Cookies from "js-cookie";
+import ProfileModal from "../profileCard/ProfileModal";
 
 export default function Topbar() {
   const { userData } = useSelector((store) => store.user);
+  const [isHover, setIsHover] = useState(false);
+
   const dispatch = useDispatch();
+
+  
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
-  const token = Cookies.get('token')
+  const token = Cookies.get("token");
 
-  const handleLogout = () => {
-    dispatch(LOGOUT());
-    toast.info("Logout Successfully");
-    navigate("/login");
+  const handleCloseModal = () => {
+    setTimeout(() => {
+      setIsHover(false);
+    }, [600]);
   };
 
-  const handleRequest = async() =>{
-    if(userData.isSuperAdmin){
-      toast.info("You Are SuperAdmin")
-    }
-    else if(userData.isAdmin){
-      toast.info("Yor Are Admin")
-    }else if(userData.isRequested){
-      toast.info("You Have Allready Requested For Admin")
-    }else{
+  const handleRequest = async () => {
+    if (userData.isSuperAdmin) {
+      toast.info("You Are SuperAdmin");
+    } else if (userData.isAdmin) {
+      toast.info("Yor Are Admin");
+    } else if (userData.isRequested) {
+      toast.info("You Have Allready Requested For Admin");
+    } else {
       try {
-        dispatch(UPDATE_START())
-        const res = await axios.put(process.env.REACT_APP_BACKEND_URL+"api/users/request/"+userData._id,{},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        console.log(res.data)
-        dispatch(UPDATE_SUCCESS(res.data))
-        dispatch(loadUserData())
-        toast.success("Request Sent")
+        dispatch(UPDATE_START());
+        const res = await axios.put(
+          process.env.REACT_APP_BACKEND_URL +
+            "api/users/request/" +
+            userData._id,
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        console.log(res.data);
+        dispatch(UPDATE_SUCCESS(res.data));
+        dispatch(loadUserData());
+        toast.success("Request Sent");
       } catch (error) {
-        dispatch(UPDATE_FAILURE())
-        console.log(error)
-        toast.error("Something Went Wrong!")
+        dispatch(UPDATE_FAILURE());
+        console.log(error);
+        toast.error("Something Went Wrong!");
       }
     }
-  }
+  };
 
   const handleSearch = (e) => {
-      console.log("Search term:", searchTerm);
-      toast.success(`Search for : ${searchTerm}`)
-      navigate(`/post/title/?title=${searchTerm}`)
+    console.log("Search term:", searchTerm);
+    toast.success(`Search for : ${searchTerm}`);
+    navigate(`/post/title/?title=${searchTerm}`);
   };
 
   const handleKeyDown = (e) => {
@@ -84,30 +98,36 @@ export default function Topbar() {
           </li>
         </ul>
       </div>
-      {userData && <div className="topCenter">
-        <input
-          type="text"
-          placeholder="Search..."
-          className="topSearchInput"
-          value={searchTerm}
-          onKeyDown={handleKeyDown}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <i className="topSearchIcon fas fa-search" onClick={handleSearch}></i>
-      </div>}
       <div className="topRight">
         {userData ? (
           <div className="right">
-              <li className="logout" onClick={handleRequest}>
+            <div className="topCenter">
+              <input
+                type="text"
+                placeholder="Search..."
+                className="topSearchInput"
+                value={searchTerm}
+                onKeyDown={handleKeyDown}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              <i
+                className="topSearchIcon fas fa-search"
+                onClick={handleSearch}
+              ></i>
+            </div>
+            <div onClick={() => setIsHover(!isHover)}>
+              <img className="topImg" src={userData.profilePic} alt="" />
+            </div>
+            <div onMouseLeave={handleCloseModal}>
+              {isHover && <ProfileModal handleCloseModal={handleCloseModal}/>}
+            </div>
+
+            {/* <li className="logout" onClick={handleRequest}>
               {userData.isAdmin ? (userData.isSuperAdmin ? "SUPERADMIN" : "ADMIN") : (userData.isRequested ? "REQUESTED" : "REQUEST")}
             </li>
-            <Link to="/settings">
-              <img className="topImg" src={userData.profilePic} alt="" />
-            </Link>
             <li className="logout" onClick={handleLogout}>
               LOGOUT
-            </li>
-          
+            </li> */}
           </div>
         ) : (
           <ul className="topList">
