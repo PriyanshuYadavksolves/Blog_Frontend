@@ -47,10 +47,10 @@ const ProfileModal = ({handleCloseModal}) => {
   
   const dispatch = useDispatch();
   const handleLogout = () => {
+    handleCloseModal()
+    navigate("/login");
     dispatch(LOGOUT());
     toast.info("Logout Successfully");
-    navigate("/login");
-    handleCloseModal()
   };
   return (
       <div className=" bg-white  border-slate-100 border-2 break-all absolute top-[100%] right-[17px]  shadow-xl rounded-xl p-10 w-full max-w-[350px] grid gap-8">

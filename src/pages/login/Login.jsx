@@ -48,13 +48,14 @@ export default function Login() {
       dispatch(LOGIN_SUCCESS(res.data.others));
       dispatch(loadUserData());
       toast.success(`Login: ${res.data.others.username}`);
+      navigate('/')
       if (res.data.isSuperAdmin) {
         navigate(`/super/${res.data._id}`);
       }
       
       setSuccess(true)
-      // toast.success("Verification Email Sent");
       // res.data && navigate("/login");
+      // toast.success("Verification Email Sent");
     } catch (err) {
       dispatch(LOGIN_FAILURE());
       console.error(err);

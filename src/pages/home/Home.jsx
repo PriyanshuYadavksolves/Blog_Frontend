@@ -54,7 +54,10 @@ export default function Home() {
       // console.log(res.data)
       setPosts(res.data)
     } catch (error) {
-      console.log(error)
+      console.log(error.response)
+      if(error.response.data.message === "Invalid token"){
+        dispatch(LOGOUT())
+      }
     }
   }
 

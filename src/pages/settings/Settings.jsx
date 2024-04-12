@@ -10,6 +10,7 @@ import {
 } from "../../features/user/userSlice";
 import { toast } from "react-toastify";
 import Cookies from "js-cookie";
+import { Link } from "react-router-dom";
 // import { useNavigate } from "react-router-dom";
 export default function Settings() {
   const [file, setFile] = useState(null);
@@ -116,11 +117,11 @@ export default function Settings() {
             <div className="flex ml-10 gap-10">
               <div className="flex flex-col items-center">
                 <span>{userData.followers.length}</span>
-                <span className="hover:text-slate-700 cursor-pointer">Followers</span>
+                <Link to={'/followers/'+userData._id} className="hover:text-slate-700 cursor-pointer">Followers</Link >
               </div>
               <div className="flex flex-col items-center">
                 <span>{userData.following.length}</span>
-                <span className="hover:text-slate-700 cursor-pointer">Followings</span>
+                <Link to={'/followings/'+userData._id} className="hover:text-slate-700 cursor-pointer">Followings</Link >
               </div>
             </div>
           </div>

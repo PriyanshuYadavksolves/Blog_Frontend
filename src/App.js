@@ -17,6 +17,7 @@ import ProfileModal from './components/profileCard/ProfileModal';
 import Test from './components/profileCard/Test';
 import Followers from './components/followers/Followers.jsx';
 import Verify from './pages/Verify.jsx';
+import Followings from './components/followings/Followings.jsx';
 
 
 function App() {
@@ -38,6 +39,7 @@ function App() {
         <Route path="/super/:id" element={userData ? <SuperAdmin /> : <Login/>} />
         <Route path="/modal" element={userData ? <ProfileModal /> : <Login/>} />
         <Route path="/followers/:id" element={userData ? <Followers /> : <Login/>} />
+        <Route path="/followings/:id" element={userData ? <Followings /> : <Login/>} />
         <Route path="/verify/:id" element={<Verify/>} />
       </Routes>
     </Router>
